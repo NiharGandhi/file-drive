@@ -9,11 +9,13 @@ import {
 import {
     FileIcon,
     MoreVertical,
-    StarHalf,
     StarIcon,
     TrashIcon,
     UndoIcon,
 } from "lucide-react";
+
+import { AiFillStar } from "react-icons/ai";
+
 import {
     AlertDialog,
     AlertDialogAction,
@@ -105,7 +107,7 @@ export function FileCardActions({
                             </div>
                         ) : (
                             <div className="flex gap-1 items-center">
-                                <StarHalf className="w-4 h-4" /> Favorite
+                                <AiFillStar className="w-4 h-4" /> Favorite
                             </div>
                         )}
                     </DropdownMenuItem>
