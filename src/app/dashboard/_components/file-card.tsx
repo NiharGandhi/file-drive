@@ -24,6 +24,7 @@ import { AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { PiFilePdfBold, PiFileCsvBold, PiMicrosoftWordLogoFill, PiMicrosoftPowerpointLogoFill, PiMicrosoftExcelLogoFill, PiFileZipDuotone, PiFilePngDuotone, PiFileJpgBold, PiFileSvgDuotone } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
+import { BsFiletypeMp4 } from "react-icons/bs";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -68,6 +69,7 @@ export function FileCard({
         'x-zip-compressed': <PiFileZipDuotone />,
         'plain': <Text />,
         'svg+xml': <PiFileSvgDuotone />,
+        'mp4': <BsFiletypeMp4 />,
     } as unknown as Record<Doc<"files">["type"], ReactNode>;
 
     // const isFavorited = favorites.some((favorite) => favorite.fileId === file._id);

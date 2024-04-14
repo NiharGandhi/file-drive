@@ -64,8 +64,6 @@ export default function UploadButton() {
 
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values);
-        console.log(values.file);
         if (!orgId) return;
 
         const postUrl = await generateUploadUrl();
@@ -82,6 +80,8 @@ export default function UploadButton() {
 
         const { storageId } = await result.json();
 
+        console.log(values.file[0].type);
+
         const types = {
             'image/png': "png",
             'image/jpeg': "jpeg",
@@ -94,6 +94,7 @@ export default function UploadButton() {
             'application/x-zip-compressed': 'x-zip-compressed',
             'text/plain': 'plain',
             'image/svg+xml': 'svg+xml',
+            'video/mp4': 'mp4',
         } as Record<string, Doc<"files">["type"]>;
 
         try {

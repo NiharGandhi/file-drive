@@ -13,6 +13,7 @@ export const fileTypes = v.union(
                                 v.literal("plain"),
                                 v.literal("svg+xml"),
                                 v.literal("jpeg"),
+                                v.literal("mp4"),
                                 );
 
 export const roles = v.union(v.literal("admin"), v.literal("member"));
