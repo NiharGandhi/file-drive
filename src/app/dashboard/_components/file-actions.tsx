@@ -103,11 +103,11 @@ export function FileCardActions({
                     >
                         {isFavorited ? (
                             <div className="flex gap-1 items-center">
-                                <StarIcon className="w-4 h-4" /> Unfavorite
+                                <AiFillStar className="w-4 h-4" /> Unfavorite
                             </div>
                         ) : (
                             <div className="flex gap-1 items-center">
-                                <AiFillStar className="w-4 h-4" /> Favorite
+                                <StarIcon className="w-4 h-4" /> Favorite
                             </div>
                         )}
                     </DropdownMenuItem>
