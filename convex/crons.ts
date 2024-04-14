@@ -3,12 +3,6 @@ import { internal } from "./_generated/api";
 
 const crons = cronJobs();
 
-crons.interval(
-    "delete old files",
-    { minutes: 1 },
-    internal.files.deleteAllFiles
-);
-
 crons.monthly(
     "delete old files",
     {
