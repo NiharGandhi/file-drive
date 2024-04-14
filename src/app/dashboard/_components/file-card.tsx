@@ -105,6 +105,7 @@ export function FileCard({
                 {file.type === "x-zip-compressed" && <PiFileZipDuotone className="w-20 h-20" />}
                 {file.type === "plain" && <Text className="w-20 h-20" />}
                 {file.type === "svg+xml" && <PiFileSvgDuotone className="w-20 h-20" />}
+                {file.type === "mp4" && <BsFiletypeMp4 className="w-20 h-20" />}
             </CardContent>
             <CardFooter className="flex justify-between">
                 <div className="flex gap-2 text-[14px] text-gray-700 w-60 items-center">
