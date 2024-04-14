@@ -102,11 +102,11 @@ export function FileCardActions({
                         className="flex gap-1 items-center cursor-pointer"
                     >
                         {isFavorited ? (
-                            <div className="flex gap-1 items-center">
+                            <div className="flex text-yellow-500 gap-1 items-center">
                                 <AiFillStar className="w-4 h-4" /> Unfavorite
                             </div>
                         ) : (
-                            <div className="flex gap-1 items-center">
+                                <div className="flex text-yellow-500 gap-1 items-center">
                                 <StarIcon className="w-4 h-4" /> Favorite
                             </div>
                         )}
