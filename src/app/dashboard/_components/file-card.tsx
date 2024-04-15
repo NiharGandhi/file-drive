@@ -10,7 +10,7 @@ import { Doc } from "../../../../convex/_generated/dataModel";
 import { Text } from "lucide-react";
 import { PiFilePdfBold, PiFileCsvBold, PiMicrosoftWordLogoFill, PiMicrosoftPowerpointLogoFill, PiMicrosoftExcelLogoFill, PiFileZipDuotone, PiFilePngDuotone, PiFileSvgDuotone } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
-import { FaPython } from "react-icons/fa";
+import { FaPython, FaFileAudio } from "react-icons/fa";
 import { BsFiletypeMp4, BsFiletypeMov } from "react-icons/bs";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -45,7 +45,8 @@ export function FileCard({
         'plain': <Text />,
         'svg+xml': <PiFileSvgDuotone />,
         'mp4': <BsFiletypeMp4 />,
-        'quicktime': <BsFiletypeMov />
+        'quicktime': <BsFiletypeMov />,
+        'mpeg': <FaFileAudio />,
     } as unknown as Record<Doc<"files">["type"], ReactNode>;
 
     return (
@@ -82,6 +83,7 @@ export function FileCard({
                     {file.type === "svg+xml" && <PiFileSvgDuotone className="w-20 h-20" />}
                     {file.type === "mp4" && <BsFiletypeMp4 className="w-20 h-20" />}
                     {file.type === "quicktime" && <BsFiletypeMov className="w-20 h-20" />}
+                    {file.type === "mpeg" && <FaFileAudio className="w-20 h-20" />}
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between">
@@ -95,6 +97,7 @@ export function FileCard({
                 <div className="text-xs text-gray-800 items-center">
                     Uploaded On {formatRelative(new Date(file._creationTime), new Date())}
                 </div>
+                
             </CardFooter>
         </Card>
 

@@ -14,7 +14,7 @@ import {
     UndoIcon,
 } from "lucide-react";
 
-import { AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineDownload } from "react-icons/ai";
 
 import {
     AlertDialog,
@@ -31,6 +31,19 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { useToast } from "@/components/ui/use-toast";
 import { Protect } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
+
+export function DownloadButton({ downloadUrl, fileName }: { downloadUrl: string | null; fileName: string }) {
+    return (
+        downloadUrl && (
+            <Button size="sm" className="gap-1">
+                <a href={downloadUrl} download={`${fileName}`} className="bg-gray-900">
+                    <AiOutlineDownload className="h-4 w-4" />
+                </a>
+            </Button>
+        )
+    );
+}
 
 export function FileCardActions({
     file,
@@ -47,8 +60,41 @@ export function FileCardActions({
 
     const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
+    const [downloadUrl, setDownloadUrl] = useState<string | null>(null);
+
+    const handleDownload = async () => {
+        if (!file.url) return;
+
+        toast({
+            variant: "default",
+            title: "Preparing your download",
+            description: "Please wait while we prepare your download...",
+        });
+
+        try {
+            const response = await fetch(file.url);
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            setDownloadUrl(url);
+            toast({
+                variant: "success",
+                title: "Download ready",
+                description: "Your download is ready. Click the button to save the file.",
+            });
+        } catch (error) {
+            console.error('Error fetching file:', error);
+            toast({
+                variant: "destructive",
+                title: "Error downloading",
+                description: "There was an error downloading the file. Please try again later.",
+            });
+        }
+    };
+
+
     return (
-        <>
+        <>  
+            <DownloadButton downloadUrl={downloadUrl} fileName={file.name} />
             <AlertDialog open={isConfirmOpen} onOpenChange={setIsConfirmOpen}>
                 <AlertDialogContent>
                     <AlertDialogHeader>
@@ -90,9 +136,16 @@ export function FileCardActions({
                         }}
                         className="flex gap-1 items-center cursor-pointer"
                     >
-                        <FileIcon className="w-4 h-4" /> Download
+                        <FileIcon className="w-4 h-4" /> View
                     </DropdownMenuItem>
-
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem
+                        onClick={handleDownload}
+                        className="flex gap-1 items-center cursor-pointer"
+                    >
+                        <AiOutlineDownload className="h-4 w-4" />Download
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
                     <DropdownMenuItem
                         onClick={() => {
                             toggleFavorite({

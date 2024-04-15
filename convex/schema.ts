@@ -15,6 +15,7 @@ export const fileTypes = v.union(
                                 v.literal("jpeg"),
                                 v.literal("mp4"),
                                 v.literal("quicktime"),
+                                v.literal("mpeg"),
                                 );
 
 export const roles = v.union(v.literal("admin"), v.literal("member"));
