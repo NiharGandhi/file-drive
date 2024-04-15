@@ -1,51 +1,26 @@
 import {
     Card,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card";
-import { Doc, Id } from "../../../../convex/_generated/dataModel";
+import { Doc } from "../../../../convex/_generated/dataModel";
 
-import { Button } from "@/components/ui/button";
-
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import { Download, EllipsisVertical, Text, Trash2, Undo2Icon } from "lucide-react";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
-import { PiFilePdfBold, PiFileCsvBold, PiMicrosoftWordLogoFill, PiMicrosoftPowerpointLogoFill, PiMicrosoftExcelLogoFill, PiFileZipDuotone, PiFilePngDuotone, PiFileJpgBold, PiFileSvgDuotone } from "react-icons/pi";
+import { Text } from "lucide-react";
+import { PiFilePdfBold, PiFileCsvBold, PiMicrosoftWordLogoFill, PiMicrosoftPowerpointLogoFill, PiMicrosoftExcelLogoFill, PiFileZipDuotone, PiFilePngDuotone, PiFileSvgDuotone } from "react-icons/pi";
 import { SiJpeg } from "react-icons/si";
 import { FaPython } from "react-icons/fa";
-import { BsFiletypeMp4 } from "react-icons/bs";
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { BsFiletypeMp4, BsFiletypeMov } from "react-icons/bs";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+import { formatRelative } from 'date-fns'
 
-import { ReactNode, useState } from "react";
-import { useMutation, useQuery } from "convex/react";
+import { ReactNode } from "react";
+import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
-import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
-import { Protect } from "@clerk/nextjs";
 import { FileCardActions } from "./file-actions";
 
 export function FileCard({ 
@@ -70,9 +45,8 @@ export function FileCard({
         'plain': <Text />,
         'svg+xml': <PiFileSvgDuotone />,
         'mp4': <BsFiletypeMp4 />,
+        'mov': <BsFiletypeMov />
     } as unknown as Record<Doc<"files">["type"], ReactNode>;
-
-    // const isFavorited = favorites.some((favorite) => favorite.fileId === file._id);
 
     return (
         <Card>
@@ -89,11 +63,11 @@ export function FileCard({
             <CardContent className="h-[150px] flex justify-center items-center">
                 {
                     file.type === "png" && file.url &&
-                    <Image src={file.url} alt={file.name} width="400" height="100"  />
+                    <Image src={file.url} alt={file.name} width="400" height="100" />
                 }
                 {
                     file.type === "jpeg" && file.url &&
-                    <Image src={file.url} alt={file.name} width="500" height="100" />
+                    <Image src={file.url} alt={file.name} width="400" height="100" />
                 }
                 
                 {file.type === "pdf" && <PiFilePdfBold className="w-20 h-20" />}
@@ -106,6 +80,7 @@ export function FileCard({
                 {file.type === "plain" && <Text className="w-20 h-20" />}
                 {file.type === "svg+xml" && <PiFileSvgDuotone className="w-20 h-20" />}
                 {file.type === "mp4" && <BsFiletypeMp4 className="w-20 h-20" />}
+                {file.type === "mov" && <BsFiletypeMov className="w-20 h-20" />}
             </CardContent>
             <CardFooter className="flex justify-between">
                 <div className="flex gap-2 text-[14px] text-gray-700 w-60 items-center">
