@@ -95,7 +95,7 @@ export default function UploadButton() {
             'text/plain': 'plain',
             'image/svg+xml': 'svg+xml',
             'video/mp4': 'mp4',
-            'video/mov': 'mov',
+            'video/quicktime': 'quicktime',
         } as Record<string, Doc<"files">["type"]>;
 
         try {

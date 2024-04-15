@@ -45,7 +45,7 @@ export function FileCard({
         'plain': <Text />,
         'svg+xml': <PiFileSvgDuotone />,
         'mp4': <BsFiletypeMp4 />,
-        'mov': <BsFiletypeMov />
+        'quicktime': <BsFiletypeMov />
     } as unknown as Record<Doc<"files">["type"], ReactNode>;
 
     return (
@@ -80,7 +80,7 @@ export function FileCard({
                 {file.type === "plain" && <Text className="w-20 h-20" />}
                 {file.type === "svg+xml" && <PiFileSvgDuotone className="w-20 h-20" />}
                 {file.type === "mp4" && <BsFiletypeMp4 className="w-20 h-20" />}
-                {file.type === "mov" && <BsFiletypeMov className="w-20 h-20" />}
+                {file.type === "quicktime" && <BsFiletypeMov className="w-20 h-20" />}
             </CardContent>
             <CardFooter className="flex justify-between">
                 <div className="flex gap-2 text-[14px] text-gray-700 w-60 items-center">

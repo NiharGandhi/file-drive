@@ -46,7 +46,7 @@ export function SideNav() {
             </div>
 
             {isMobileMenuOpen && (
-                <div className="lg:hidden absolute top-[80px] right-0 left-0 bg-blue-950 z-50">
+                <div className="lg:hidden absolute top-[80px] right-0 left-0 bg-gray-100 z-50">
                     {navLinks.map((item, index) => {
                         return (
                             <Link
@@ -55,7 +55,10 @@ export function SideNav() {
                                 href={item.url}
                                 key={index}
                             >
-                                {item.name}
+                                <Button variant={"link"} className={`flex gap-2 hover:text-purple-700 ${pathname === item.url ? 'text-purple-600 !important' : ''}`}>
+                                    {item.icon}
+                                    {item.name}
+                                </Button>
                             </Link>
                         );
                     })}
